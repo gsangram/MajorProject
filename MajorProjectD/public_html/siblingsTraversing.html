@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Document Ready Event Demo1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+             <script type="text/javascript">
+            $(document).ready(function() {
+                $('h2').siblings().hover(function() {
+                    alert('hovering over h2 tag');
+                });
+            });
+            </script>
+    </head>
+    <body>
+        <div>
+            <h1> Ahex Technologies pvt ltd</h1>
+      
+        <div>
+        <h2> One need imagination to visualize the magic of life</h2>
+        <hr>
+        <div>
+        CheckBox:<br>
+        <input type="checkbox" name="Friend" value="Engg Math">Engg Math<br>
+        <input type="checkbox" name="Friend" value="Machine Dynamics">Machine Dynamics<br>
+        <input type="checkbox" name="Friend" value="Kinematics of machine">Kinematics of machine<br>
+        </div>
+        <hr>
+        <h2> I am excited about my up-comming movie spiderman-homecoming
+        <p>China is a major threat for India's sovereignty</p>
+        </h2><br> <hr>
+        <select>
+            <option value='od'>ODisha</option>
+            <option value='wb'>West Bengal</option>
+            <option value='ts'>Telengana State</option>
+            <option value='ap'>Andhra Pradesh</option>
+        </select>
+        
+        <hr>
+            
+        <input type="button" id="button1" value="click-me" />     
+        </div> 
+              </div>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>jQuery DataTable</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='C:\Users\Public\Pictures\Sample Pictures\desert.jpg' rel='icon' type='image/ico'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+        <script type="text/javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#tb01").DataTable();
+            });    
+        </script>
+
+        
+    </head>
+    <body>
+        <h2>Simple form table using DataTable plug-ins of jQuery....!!!</h2>
+        
+        <div class='container' style="width: 700px;border: 2px; font-family: forty;border: 2px;border-color: solid black">
+        
+            <table id="tb01" class="table" style="background-color: cyan">
+            <thead>
+                <th>User Name</th>
+                <th>E-Mail</th>
+                <th>Password</th>
+                <th> gender</th>    
+            </thead>
+            <tbody>
+              <td>sangram G</td>
+              <td>ahex@sangram</td>
+              <td>Mala Ready</td>
+              <td>male</td>
+            </tbody>
+            
+            <tbody>
+              <td>Swathi G</td>
+              <td>Swathi@sangram</td>
+              <td>warangal</td>
+              <td>female</td>
+            </tbody>
+            
+             <tbody>
+              <td>Hakeem G</td>
+              <td>Hakeem@sangram</td>
+              <td>Borabanda</td>
+              <td>female</td>
+            </tbody>
+            
+            <tbody>
+              <td>Prashanti G</td>
+              <td>Prashanti@sangram</td>
+              <td>Lingampalli</td>
+              <td>female</td>
+            </tbody>
+            
+            <tbody>
+              <td>Rahul G</td>
+              <td>Rahul@sangram</td>
+              <td>Balkampet</td>
+              <td>male</td>
+            </tbody>
+            
+            <tbody>
+              <td>Nitisha G</td>
+              <td>Nitisha@sangram</td>
+              <td>Begumpet</td>
+              <td>female</td>
+            </tbody>
+            
+            <tbody>
+              <td>Pandu G</td>
+              <td>Pandu@sangram</td>
+              <td>Ameerpet</td>
+              <td>others</td>
+            </tbody>
+        </table> 
+      </div>
+    </body>
+</html>
