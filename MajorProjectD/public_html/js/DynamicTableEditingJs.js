@@ -1,14 +1,26 @@
 $(document).ready(function () {
-    /*On click of submit button*/
-    $('#bttn01').click(function () {
-//        function formClear(){
-//            $("#txt01").val("");
-//            $("#txt02").val("");
-//            $("#txt03").val("");
-//            $("#opt01").val("");
-//            $("chk01").val("");
-//
-//        }
+   //    $('#bttn01').click(function () {
+        $("#table01").hide();
+        $("#form01").validate({
+    
+        // Specify the validation rules
+        rules: {
+            Name: "required",
+            Email: "required",
+            Hobby: "required",
+            agree: "required"
+        },
+        
+        // Specify the validation error messages
+        messages: {
+            Name: "Please enter your first name",
+            Email: "Please enter your last name",          
+            Hobby: "Please enter a valid email address",
+            agree: "Please accept our policy"
+        },
+        
+        submitHandler: function(form) {
+
         var meta = "<tr><td>" + $("#txt01").val() + "</td>"
                 + "<td>" + $("#txt02").val() + "</td>"
                 + "<td>" + $("#txt03").val() + "</td>"
@@ -18,7 +30,8 @@ $(document).ready(function () {
                 + '<button id="bye02" type="button" class="btn btn-info btn-lg"  style="background-color:red">Delete</button>' + "</td></tr>";
         $("#tbd01").append(meta);
          $('#form01')[0].reset();
-//         formClear();
+          $("#table01").show();
+     }
     }); 
     /*On click of edit button*/
     $('body').on('click', '#bye01', function () {
@@ -51,5 +64,9 @@ $(document).ready(function () {
            $("#tbd01").find('tr').eq(updatingRow).find('td').eq(3).html(Experience);
            $("#tbd01").find('tr').eq(updatingRow).find('td').eq(4).html(Games);
             $('#01form')[0].reset();
+                       
        });
+        $('body').on('click', '#bye02', function () {
+            $(this).parent().parent().remove();
+        });
 });

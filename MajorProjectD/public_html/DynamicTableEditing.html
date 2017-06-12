@@ -6,17 +6,18 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+        <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
         <script src="js/DynamicTableEditingJs.js" type="text/javascript"></script>
     </head>
+    
     <body style="margin:30px" >
         <form id="form01" style="background-color: cyan;padding:20px">
             Name :<br>
             <input type="text" id="txt01" name="Name" placeholder="Enter Name"><br><br>
-            E-mail :<br>
-            <input type="text" id="txt02" name="E-mail"><br><br>
+            Email :<br>
+            <input type="text" id="txt02" name="E-mail" placeholder="Enter Email"><br><br>
             Hobby :<br>
-            <input type="text" id="txt03" name="Hobby"><br><br>
+            <input type="text" id="txt03" name="Hobby" placeholder="Enter Hobby"><br><br>
             Experience : 
             <select id="opt01">
                 <option value="Fresher">Freshers</option>
@@ -29,13 +30,14 @@
                 <input type="checkbox" value="Cricket" name="game">Cricket<br>
                 <input type="checkbox" value="Football" name="game">Football<br>
             </div><br><hr>
-            <button id="bttn01" style="background-color:lightblue" type="button">Display Data</button>
+<!--            <button id="bttn01" style="background-color:lightblue" type="button">Display Data</button>-->
+                <input type="submit" id="bttn01" name="submit" value="Display Day">
         </form>
         <div class="container">
-            <table class="table table-striped" style="border-color: black">
+            <table id="table01" class="table table-striped" style="border-color: black">
                 <thead>
                 <th>Name</th>
-                <th>E-mail</th>
+                <th>Email</th>
                 <th>Hobby</th>
                 <th>Years of Experience</th>
                 <th>Games</th>
@@ -45,8 +47,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
-</div>
+        
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">     
@@ -61,7 +62,7 @@
                 <form id="01form">
                     Name :<br>
                     <input type="text" id="01txt" name="Name"  ><br><br>
-                    E-mail :<br>
+                    Email :<br>
                     <input type="text" id="02txt" name="E-mail" ><br><br>
                     Hobby :<br>
                     <input type="text" id="03txt" name="Hobby" ><br><br>
@@ -78,7 +79,7 @@
                         <input type="checkbox" value="Football" name="game">Football<br>
                     </div><br><hr>
                     <div class="modal-footer" style="background-color: lightskyblue">
-                        <button type='button' id="up01" class="btn btn-success">Update</button>
+                        <button type='button' id="up01" class="btn btn-success" data-dismiss="modal">Update</button>
                         <button  type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
                     </div>
                 </form>
