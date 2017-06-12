@@ -14,8 +14,8 @@ $(document).ready(function () {
         // Specify the validation error messages
         messages: {
             Name: "Please enter your first name",
-            Email: "Please enter your last name",          
-            Hobby: "Please enter a valid email address",
+            Email: "Please enter your Email Id",          
+            Hobby: "Please enter a valid Hobby name",
             agree: "Please accept our policy"
         },
         
