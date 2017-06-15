@@ -9,8 +9,7 @@ $(document).ready(function() {
           { x:85 , y:85}, 
           { x:95 , y:100 } 
       ];     
-      
-     
+          
     var charDim= d3.select('#svg01'),
                  width=500,
                  height=400,
@@ -58,14 +57,13 @@ $(document).ready(function() {
     var lineFunc=d3.svg.line()
             .x(function(d){ return xRange(d.x);})
             .y(function(d){ return yRange(d.y);})
-            .interpolate('linear');
-//    
-//    //set the d attribute to line() function 
+            .interpolate('linear');   
+    
+   //set the d attribute to line() function 
     charDim.append('svg:path')   
         .attr('d',lineFunc(lineData))
         .attr("stroke","blue")
         .attr('stroke-width',2)
-        .attr('fill','none');
-//       
+        .attr('fill','none');      
   });
 
