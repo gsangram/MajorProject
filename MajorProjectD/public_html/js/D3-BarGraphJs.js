@@ -19,7 +19,7 @@ var barGraph=[
 width=400-margin.left-margin.right;
 height=250-margin.top-margin.bottom;
 
-xRange=d3.scale.ordinal().rangeRoundBands([0,width], 0.5) ;
+xRange=d3.scale.ordinal().rangeRoundBands([0,width], 0.7) ;
                        
 yRange=d3.scale.linear().range([height,0]);
                         
@@ -63,7 +63,7 @@ svg.selectAll('rect')
         // sets the width of bar
         .attr('width', xRange.rangeBand()) 
         // sets the height of bar
-        .attr('height' , function(d){ return ((height - margin.bottom) - yRange(d.y)); })  
+        .attr('height' , function(d){ return height  - yRange(d.y) ; })  
          // fills the bar with grey color
         .attr('fill' , 'grey');  
 });
