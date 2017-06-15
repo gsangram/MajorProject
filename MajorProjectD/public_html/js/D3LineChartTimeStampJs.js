@@ -10,8 +10,6 @@ var margin = {
 };
 
 
-//-%b-%y -Jan-17 -Feb-17 -Mar-17 -Apr-17 -May-17
-
 // Get the data
 var data = [{
     date: "01",
