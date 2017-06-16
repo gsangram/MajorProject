@@ -1,3 +1,14 @@
+$(document).ready( function(){
+
+var data = [
+  ["oranges",2312],
+  ["mangos",674], 
+  ["limes", 994], 
+  ["apples", 3433], 
+  ["strawberries", 127],
+  ["blueberries",2261]
+];
+
 var chart = document.getElementById("chart"),
     axisMargin = 20,
     margin = 20,
@@ -73,3 +84,5 @@ svg.insert("g",":first-child")
  .attr("class", "axis")
  .attr("transform", "translate(" + (margin + labelWidth) + ","+ (height - axisMargin - margin)+")")
  .call(xAxis);
+ 
+})
