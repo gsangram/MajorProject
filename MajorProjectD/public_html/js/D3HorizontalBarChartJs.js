@@ -1,24 +1,5 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Dsnap - Charts</title>
-	<style>
-	#xaxis .domain {
-		fill:none;
-		stroke:#000;
-	}
-	#xaxis text, #yaxis text {
-		font-size: 12px;
-	}
-	</style>
-</head>
-<body>
-	<div id="wrapper">
-	</div>
-	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-	<script>
-		var categories= ['','Accessories', 'Audiophile', 'Camera & Photo', 'Cell Phones', 'Computers','eBook Readers','Gadgets','GPS & Navigation','Home Audio','Office Electronics','Portable Audio','Portable Video','Security & Surveillance','Service','Television & Video','Car & Vehicle'];
+$(document).ready( function() { 
+               var categories= ['','Accessories', 'Audiophile', 'Camera & Photo', 'Cell Phones', 'Computers','eBook Readers','Gadgets','GPS & Navigation','Home Audio','Office Electronics','Portable Audio','Portable Video','Security & Surveillance','Service','Television & Video','Car & Vehicle'];
 
 		var dollars = [213,209,190,179,156,209,190,179,213,209,190,179,156,209,190,190];
 
@@ -57,15 +38,17 @@
 						  .enter()
 						  .append('line')
 						  .attr({'x1':function(d,i){
+//                                                           console.log('x1',i*30) ;
                                                                 return i*30; },
 								 'y1':function(d){
+//                                                                     console.log('y1',d.y1)
                                                                      return d.y1; },
 								 'x2':function(d,i){
-                                                                    console.log(i*30) 
+//                                                                    console.log('x2',i*30) 
                                                                     return i*30; },
 								 'y2':function(d){ 
-        console.log('y2',d.y2)                                                             
-        return d.y2; },
+//                                                                   console.log('y2',d.y2)                                                             
+                                                                   return d.y2; },
 							})
 						  .style({'stroke':'#adadad','stroke-width':'1px'});
 
@@ -81,7 +64,7 @@
 				.scale(yscale)
 				.tickSize(2)
 				.tickFormat(function(d,i){ return categories[i]; })
-				.tickValues(d3.range(17));
+                                .tickValues(d3.range(17));
 
 		var y_xis = canvas.append('g')
 						  .attr("transform", "translate(150,0)")
@@ -100,8 +83,10 @@
 							.data(dollars)
 							.enter()
 							.append('rect')
-							.attr('height',19)
-							.attr({'x':0,'y':function(d,i){ return yscale(i)+19; }})
+							.attr('height',20)
+							.attr({'x':0,'y':function(d,i){
+//                                                        console.log(yscale(i)+20)       
+                                                        return yscale(i)+19; }})
 							.style('fill',function(d,i){ return colorScale(i); })
 							.attr('width',function(d){ return 0; });
 
@@ -110,17 +95,16 @@
 						    .data(dollars)
 						    .transition()
 						    .duration(1000) 
-						    .attr("width", function(d) {return xscale(d); });
+						    .attr("width", function(d) {
+//                                                      console.log(xscale(d));  
+                                                      return xscale(d); });
 
 		var transitext = d3.select('#bars')
 							.selectAll('text')
 							.data(dollars)
 							.enter()
 							.append('text')
-							.attr({'x':function(d) {return xscale(d)-200; },'y':function(d,i){ return yscale(i)+35; }})
+							.attr({'x':function(d) {return xscale(d)-300; },'y':function(d,i){ return yscale(i)+30; }})
 							.text(function(d){ return d+"$"; }).style({'fill':'#fff','font-size':'14px'});
 
-
-	</script>
-</body>
-</html>
+});
