@@ -1,5 +1,5 @@
 $(document).ready( function() { 
-               var categories= ['','Accessories', 'Audiophile', 'Camera & Photo', 'Cell Phones', 'Computers','eBook Readers','Gadgets','GPS & Navigation','Home Audio','Office Electronics','Portable Audio','Portable Video','Security & Surveillance','Service','Television & Video','Car & Vehicle'];
+               var categories= ['','Accessories', 'Audiophile', 'Photography', 'Mobiles', 'Computers','Kindle','Gadgets','GPS','bingo music','Office stuffs','Portable Audio','Portable Video','Security','Service','Television','Vehicle'];
 
 		var dollars = [213,209,190,179,156,209,190,179,213,209,190,179,156,209,190,190];
 
