@@ -1,5 +1,5 @@
 
-
+$(document).ready(function() {
 dataset = [
     {label:"90-91", "non-oil imports":18000, "Total imports":24000},
     {label:"91-92", "non-oil imports":14000, "Total imports":19000},
@@ -35,13 +35,13 @@ var svg=d3.select('body')
             .append('svg')
             .attr('width' , width + margin.left + margin.right)
             .attr('height' , height + margin.top + margin.bottom)
-            .style('background-color' , cyan)
+            .style('background-color' , 'cyan')
             .append('g')
             .attr('transform','translate('+margin.left+','+margin.right+')');
     
 var options= d3.keys(dataset[0])
             .filter(function(key) { return key !=='label'});
-    console.log('options',options);
+//    console.log('options',options);
 dataset.forEach(function(d) { 
     d.obs=options.map(function(name) { return {name: name, value: +d[name]}; });
 })
@@ -61,7 +61,7 @@ var yAxis=d3.svg.axis()
         .orient('left');
 
 svg.append('g')
-        .attr('class','axis')
+        .attr('class','x axis')
         .attr('transform','translate(0,'+height+')')
         .call(xAxis)
         .append("text")
@@ -71,7 +71,7 @@ svg.append('g')
         .style("text-anchor", "end");
        
 svg.append('g')
-        .attr('class','axis')
+        .attr('class','y axis')
         .attr('transform','translate('+width+',0)')
         .call(yAxis)
         .text("Qty in millions");
@@ -79,9 +79,10 @@ svg.append('g')
 var bar=svg.selectAll('.bar')
         .data(dataset)
         .enter()
+        .append('g')
         .attr('class','rect')
         .attr("transform", function(d) { 
-            console.log('translate',x0(d.label));
+//            console.log('translate',x0(d.label));
         return "translate(" + x0(d.label) + ",0)"; });
         
         
@@ -95,21 +96,21 @@ var bar=svg.selectAll('.bar')
     .attr("height", function(d) { return height - y(d.value); })
     .style("fill", function(d) { return color(d.name); });
 
-//bar.on("mousemove", function(d){
-//        divTooltip.style("left", d3.event.pageX+10+"px");
-//        divTooltip.style("top", d3.event.pageY-25+"px");
-//        divTooltip.style("display", "inline-block");
-//        var x = d3.event.pageX, y = d3.event.pageY
-//        var elements = document.querySelectorAll(':hover');
-//        l = elements.length
-//        l = l-1
-//        elementData = elements[l].__data__
-//        divTooltip.html((d.label)+"<br>"+elementData.name+"<br>"+elementData.value+"%");
-//    });
+bar.on("mousemove", function(d){
+        divTooltip.style("left", d3.event.pageX+10+"px");
+        divTooltip.style("top", d3.event.pageY-25+"px");
+        divTooltip.style("display", "inline-block");
+        var x = d3.event.pageX, y = d3.event.pageY
+        var elements = document.querySelectorAll(':hover');
+        l = elements.length
+        l = l-1
+        elementData = elements[l].__data__
+        divTooltip.html((d.label)+"<br>"+elementData.name+"<br>"+elementData.value+"%");
+    });
 
-//    bar.on("mouseout", function(d){
-//        divTooltip.style("display", "none");
-//    });
+    bar.on("mouseout", function(d){
+        divTooltip.style("display", "none");
+    });
 
 
 var legend = svg.selectAll(".legend")
@@ -130,4 +131,4 @@ legend.append("text")
     .attr("dy", ".35em")
     .style("text-anchor", "end")
     .text(function(d) { return d; });
-    
+})
