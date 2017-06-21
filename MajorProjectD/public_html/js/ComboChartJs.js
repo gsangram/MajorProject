@@ -26,7 +26,7 @@ var margin = {top: (parseInt(d3.select('body').style('width'), 10)/10),
 //setting the range 
 x0=d3.scale.ordinal()
         .rangeRoundBands([0,width],0.5);
-
+        
 x1=d3.scale.ordinal();
 
 y=d3.scale.linear().range([height,0]);
@@ -39,21 +39,22 @@ var colorRange = d3.scale.category10();
 var color = d3.scale.ordinal()
     .range(colorRange.range());
   
-    
 var options= d3.keys(dataset[0])
             .filter(function(key) { return key !=='label'});                      
 //            console.log(options);
     dataset.forEach(function(d) { 
     d.obs=options.map(function(name) {
                     return {name: name, value: +d[name]}; });
-//             console.log(d.obs);
+          console.log('wooow',d.obs) ;
+      
+    
 })
     
-   
     //assigning the domain of the plot
     x0.domain(dataset.map(function(d) { return d.label ;}));
     x1.domain(options).rangeRoundBands([0, x0.rangeBand()]);
-    y.domain([0, 25000]);
+//    y.domain([0, 40000]);
+    y.domain([0, d3.max(dataset, function(d) { return d3.max(d.obs, function(d) { return d.value; }); })]);
     y1.domain([0,100]);
 
 //    y1.domain([0,d3.max(dataset,function(d){   return d.yxis})])      
@@ -126,7 +127,7 @@ var bar=svg.selectAll('.bar')
         .attr("d", valueline(lineset))
         .attr("fill",'none')
         .attr('stroke-width',3)
-        .attr('stroke','blue');
+        .attr('stroke','purple');
 
 svg.selectAll('dot')
         .data(lineset)
