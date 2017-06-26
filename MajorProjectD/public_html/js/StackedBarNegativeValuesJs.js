@@ -4,7 +4,7 @@ $(document).ready( function() {
                        "1485525971121":{"bid":-1.07099,"ask":-1.07185,"benchmarkMark":3.07140999999},
                        "1485525971170":{"bid":0,"ask":1.07185,"benchmarkMark":1.071409999999999},
                        "1485525971226":{"bid":1.5,"ask":1.07184,"benchmarkMark":1.0713985752},
-                       "1485525971269":{"bid":-7.07097,"ask":2.07183,"benchmarkMark":1}  } ];
+                       "1485525971269":{"bid":-2.07097,"ask":2.07183,"benchmarkMark":1}  } ];
         
     var keys=d3.keys(data[0]);
 //     console.log('keys',keys);
@@ -86,7 +86,7 @@ $(document).ready( function() {
          return 0 ;
     }     
     });
-   y.domain([mini,maxi]).nice();
+                                y.domain([mini,maxi]).nice();
    
    
  //  scaling the both axis 
