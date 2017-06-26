@@ -5,6 +5,7 @@ $(document).ready( function() {
    
         
     var keys=d3.keys(data[0]);
+    console.log('keyas',keys);
     var newArr =[];
     for(var i=0; i<keys.length; i++){
 //        console.log('data[0][keys[i]]',data[0][keys[i]].bid);
