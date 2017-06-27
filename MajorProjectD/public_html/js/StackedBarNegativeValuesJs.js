@@ -47,7 +47,7 @@ $(document).ready( function() {
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
- 
+  
     var dataIntermediate = xData.map(function (c) {
         return newArr.map(function (d) {
             return { x: d.month, y: d[c]};

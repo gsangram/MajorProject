@@ -31,7 +31,6 @@ $(document).ready(function() {
     xAxis = d3.svg.axis()
       .scale(xRange)
       .tickSize(5)
-//      .orient("bottom")
       .tickSubdivide(true),
         
     //specifying the scale for the x-axis                          
@@ -48,7 +47,7 @@ $(document).ready(function() {
             .call(xAxis);
     
      // adding y-axis in the graph
-     charDim.append('svg:g')
+      charDim.append('svg:g')
             .attr('class','y axis')
             .attr('transform', 'translate(' + (margin.left) + ',0)')
             .call(yAxis);

@@ -1,33 +1,48 @@
 $(document).ready(function(){
     
-var margin={top:30, bottom:50, left:20, right:25 },
-        width=600-margin.left-margin.right,
-        height=600-margin.top-margin.bottom;
+    var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height"),
+    radius = Math.min(width, height) / 2,
+    g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-//assigning the color range 
-var color = d3.scaleOrdinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+var color = d3.scaleOrdinal(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
+var pie = d3.pie()
+    .sort(null)
+    .value(function(d) {
+        console.log('d.prcentile',d);
+                return d.percentile; });
+                
 
-var arc=d3.arc()
-        .outerRadius(radius-20)
-        .innerRadius(0);
+var path = d3.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(100);
 
-var pie=d3.arc()
-        .sort(null)
-        .value(function(d) { return d.percentile; });
+var label = d3.arc()
+    .outerRadius(radius - 40)
+    .innerRadius(radius - 40);
 
-//var path=d3.arc()
-//        .outerRadius(radius-40)
-//        .innerRadius(radius-40)
+d3.csv("csv/pie.csv", function(d) {
+    d.percentile = +d.percentile;
+    return d;
+}, function(error, data) {
+  if (error) throw error;
 
-var svg=d3.select('body')
-        .append('svg')
-        .attr('width', width+margin.left+margin.right)
-        .attr('height',height+margin.top+margin.bottom)
-        .style('background-color','cyan')
-        .append('g')
-        .attr('width',width)
-        .attr('height',height) ;     
+  var arc = g.selectAll(".arc")
+    .data(pie(data))
+    .enter().append("g")
+      .attr("class", "arc");
+
+  arc.append("path")
+      .attr("d", path)
+      .attr("fill", function(d) { return color(d.data.crime); });
+
+  arc.append("text")
+      .attr("transform", function(d) { return "translate(" + label.centroid(d) + ")"; })
+      .attr("dy", "0.35em")
+      .text(function(d) {        
+                  return d.data.crime+d.data.percentile ; });
+});
+
 })
-
