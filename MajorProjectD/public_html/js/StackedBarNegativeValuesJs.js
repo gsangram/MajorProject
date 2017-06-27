@@ -1,12 +1,13 @@
 $(document).ready( function() {
         var data = [
                     {  "1485525971074":{"bid":-1.09111,"ask":1.07186,"benchmarkMark":1.071409999999},
-                       "1485525971121":{"bid":-1.07099,"ask":-1.07185,"benchmarkMark":3.07140999999},
-                       "1485525971170":{"bid":0,"ask":1.07185,"benchmarkMark":1.071409999999999},
+                       "1485525971121":{"bid":-1.07099,"ask":-1.07185,"benchmarkMark":2.07140999999},
+                       "1485525971170":{"bid":1,"ask":1.07185,"benchmarkMark":1.071409999999999},
                        "1485525971226":{"bid":1.5,"ask":1.07184,"benchmarkMark":1.0713985752},
-                       "1485525971269":{"bid":-2.07097,"ask":2.07183,"benchmarkMark":1}  } ];
+                       "1485525971269":{"bid":-2.07097,"ask":3.07183,"benchmarkMark":1}  } ];
         
     var keys=d3.keys(data[0]);
+    
 //     console.log('keys',keys);
     var newArr =[];
     for(var i=0; i<keys.length; i++){
@@ -72,7 +73,7 @@ $(document).ready( function() {
     
     var maxi=d3.max(dataStackLayout[dataStackLayout.length - 1],function (d) { return  d.y0 + d.y;});
      
-    var mini=d3.max(dataStackLayout[dataStackLayout.length - 1],function (d) {
+    var mini=d3.min(dataStackLayout[dataStackLayout.length - 1],function (d) {
     if(d.y0<0 && d.y<0){
         return d.y0 + d.y;
     }     
@@ -114,14 +115,16 @@ $(document).ready( function() {
             .attr("x", function (d) {
                 return x(d.x);  })     
             .attr("y", function (d) {
+                console.log('y combo',d.y + d.y0);
                 return y(d.y + d.y0); })     
             .attr("height", function (d) {
-                return y(d.y0) - y(d.y + d.y0);  })
+                 console.log('y height',y(d.y0)-y(d.y + d.y0));
+                return  y(d.y0)-y(d.y + d.y0) ; })
             .attr("width", x.rangeBand());
 
     svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate(0," + 400+ ")")
             .call(xAxis);
     
     svg.append('g')
