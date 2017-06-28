@@ -1,10 +1,10 @@
 $(document).ready( function() {
         var data = [
-                    {  "1485525971074":{"bid":-1.09111,"ask":1.07186,"benchmarkMark":1.071409999999},
-                       "1485525971121":{"bid":-1.07099,"ask":-1.07185,"benchmarkMark":2.07140999999},
-                       "1485525971170":{"bid":1,"ask":1.07185,"benchmarkMark":1.071409999999999},
-                       "1485525971226":{"bid":1.5,"ask":1.07184,"benchmarkMark":1.0713985752},
-                       "1485525971269":{"bid":-2.07097,"ask":3.07183,"benchmarkMark":1}  } ];
+                    {  "1485525971074":{"bid":-1.9111,"ask":1.07186,"benchmarkMark":1.071409999999},
+                       "1485525971121":{"bid":-1.07099,"ask":1.07185,"benchmarkMark":0.7140999999},
+                       "1485525971170":{"bid":0.3,"ask":0.7185,"benchmarkMark":1.071409999999999},
+                       "1485525971226":{"bid":0.2,"ask":1.07184,"benchmarkMark":1.0713985752},
+                       "1485525971269":{"bid":-0.5097,"ask":1.07183,"benchmarkMark":1}  } ];
         
     var keys=d3.keys(data[0]);
     
@@ -87,7 +87,7 @@ $(document).ready( function() {
          return 0 ;
     }     
     });
-                                y.domain([mini,maxi]).nice();
+              y.domain([mini,maxi]).nice();
    
    
  //  scaling the both axis 
@@ -113,18 +113,25 @@ $(document).ready( function() {
                 return d;  })
             .enter().append("rect")
             .attr("x", function (d) {
-                return x(d.x);  })     
-            .attr("y", function (d) {
-                console.log('y combo',d.y + d.y0);
-                return y(d.y + d.y0); })     
+                return x(d.x);  })  
+    
+    
+            .attr("y", function (d) {           
+                       
+                if((d.y + d.y0) > 0){
+                    return y(d.y + d.y0) ;
+                         } else {
+//                             debugger;
+                    return y(d.y0);
+                         }
+                    })    
             .attr("height", function (d) {
-                 console.log('y height',y(d.y0)-y(d.y + d.y0));
-                return  y(d.y0)-y(d.y + d.y0) ; })
+               return  Math.abs(y(d.y0)-y(d.y + d.y0)) ; })
             .attr("width", x.rangeBand());
 
     svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + 400+ ")")
+            .attr("transform", "translate(0," + 464+ ")")
             .call(xAxis);
     
     svg.append('g')
