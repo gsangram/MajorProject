@@ -9,43 +9,43 @@ var margin = {
     left: 30
 };
 
-
 // Get the data
 var data = [{
-    date: "01",
+    date: "01-jan-2016",
     performance: "30"
 }, {
-    date: "02",
+    date: "02-may-2016",
     performance: "80"
 }, {
-    date: "03",
+    date: "03-jul-2016",
     performance: "60"
 }, {
-    date: "04",
+    date: "04-oct-2016",
     performance: "55"
 }, {
-    date: "05",
+    date: "05-dec-2016",
     performance: "70"
 }];
 
 var width=500-margin.left-margin.right;
 var height=400-margin.top-margin.bottom;  
 
-var parseDate=d3.time.format("%d").parse;
+var parseDate=d3.timeParse("%d-%b-%Y");
+//console.log('kaki',parseDate);
 
 //defining the range
-var xRange=d3.time.scale().range([0,width]);
-var yRange=d3.scale.linear().range([height,0]);
+var xRange=d3.scaleTime().range([0,width]).nice();
+var yRange=d3.scaleLinear().range([height,0]);
 
 //setting the range of x and y axis
-var xAxis = d3.svg.axis().scale(xRange)
-    .orient("bottom").ticks(10);
+var xAxis = d3.axisBottom(xRange) .ticks(05);
+        
 
-var yAxis = d3.svg.axis().scale(yRange)
-    .orient("left").ticks(20);
+var yAxis = d3.axisLeft(yRange)
+        .ticks(10);
     
     //defining the line
-    var valueline=d3.svg.line()
+    var valueline=d3.line()
                    .x(function(d){ return xRange(d.date);})
                    .y(function(d){ return yRange(d.performance);});
     
@@ -59,13 +59,14 @@ var yAxis = d3.svg.axis().scale(yRange)
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   
    //formatting the data
-    data.forEach(function (d) {
+    data.forEach(function(d) {
+        console.log('parse',d);
           d.date = parseDate(d.date);
           d.performance = +d.performance;
           });
 
     // Scale the range of the data
-    xRange.domain(d3.extent(data, function (d) {return d.date; }));  
+    xRange.domain(d3.extent(data, function (d) {console.log('domain',d); return d.date; }));  
     yRange.domain([0, d3.max(data, function (d) {  return d.performance; })]);
   
     // Add the valueline path.

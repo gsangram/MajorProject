@@ -1,10 +1,19 @@
 $(document).ready( function() {
         var data = [
-                    {  "1485525971074":{"bid":-1.9111,"ask":1.07186,"benchmarkMark":1.071409999999},
-                       "1485525971121":{"bid":-1.07099,"ask":1.07185,"benchmarkMark":0.7140999999},
-                       "1485525971170":{"bid":0.3,"ask":0.7185,"benchmarkMark":1.071409999999999},
-                       "1485525971226":{"bid":0.2,"ask":1.07184,"benchmarkMark":1.0713985752},
-                       "1485525971269":{"bid":-0.5097,"ask":1.07183,"benchmarkMark":1}  } ];
+                    {  
+//                       "1485525971074":{"bid":0.9111,"ask":1.186,"benchmarkMark":0.714},
+//                       "1485525971121":{"bid":1.0709,"ask":1.07185,"benchmarkMark":0.7140},
+//                       "1485525971170":{"bid":0.3,"ask":0.7185,"benchmarkMark":1.0714},
+//                       "1485525971226":{"bid":0.2,"ask":1.07184,"benchmarkMark":.8039},
+//                       "1485525971269":{"bid":0.5097,"ask":1.07183,"benchmarkMark":1} 
+                       
+                       "1485525971074":{"bid":-91,"ask":118,"benchmarkMark":71},
+                       "1485525971121":{"bid":107,"ask":107,"benchmarkMark":60},
+                       "1485525971170":{"bid":30,"ask":71,"benchmarkMark":107},
+                       "1485525971226":{"bid":20,"ask":107,"benchmarkMark":80},
+                       "1485525971269":{"bid":50,"ask":107,"benchmarkMark":100}
+                   
+        } ];
         
     var keys=d3.keys(data[0]);
     
@@ -71,23 +80,33 @@ $(document).ready( function() {
 //         console.log('dataStackLayout',dataStackLayout);
               return d.x ; }));
     
-    var maxi=d3.max(dataStackLayout[dataStackLayout.length - 1],function (d) { return  d.y0 + d.y;});
-     
-    var mini=d3.min(dataStackLayout[dataStackLayout.length - 1],function (d) {
+    var maxi=d3.max(dataStackLayout[dataStackLayout.length - 1],function (d) {
+                    console.log('d',d);
+//                  console.log('d.y0  oooooo',d.y0);
+//                  console.log('d.y 99999',d.y);
+                    return  d.y0 + d.y;});
+    var mini=d3.min(dataStackLayout[dataStackLayout.length - 1],function (d) {   
+//                  console.log('d.y0',d.y0);
+//                  console.log('d.y',d.y);    
     if(d.y0<0 && d.y<0){
+        console.log('all-1');
         return d.y0 + d.y;
     }     
     else if(d.y0<0 && d.y>0){
+         console.log('all-2');
          return  d.y0 ; 
      }
     else if(d.y0>0 && d.y<0){
+        console.log('all-3');
          return  d.y ;    
      }      
     else{
+        console.log('all-4');
          return 0 ;
     }     
     });
-              y.domain([mini,maxi]).nice();
+        
+    y.domain([mini,maxi]).nice();
    
    
  //  scaling the both axis 
@@ -115,27 +134,44 @@ $(document).ready( function() {
             .attr("x", function (d) {
                 return x(d.x);  })  
     
+//            .attr("y", function(d) { return y(d.y0) })
+//	    .attr("height", function(d) { return y(0) - y(d.size) })
     
-            .attr("y", function (d) {           
-                       
-                if((d.y + d.y0) > 0){
-                    return y(d.y + d.y0) ;
-                         } else {
-//                             debugger;
-                    return y(d.y0);
-                         }
-                    })    
+    
+            .attr("y", function (d) {    
+//                
+//                  console.log('d.y0',d.y0);
+//                  console.log('d.y',d.y);
+
+                if(d.y0<0 && d.y>0){   
+               return y(d.y) ;  
+               
+               
+                }                
+           else {
+               return y( d.y0+d.y);
+                } 
+               
+//                if((d.y ) >= 0){
+//                    return y(d.y + d.y0) ;
+//                } else {
+////                         debugger;
+//                    return y(0);
+//                         }
+                    })   
+                    
             .attr("height", function (d) {
-               return  Math.abs(y(d.y0)-y(d.y + d.y0)) ; })
+               return  Math.abs(y(d.y0)-y(d.y0+d.y)) ; })
             .attr("width", x.rangeBand());
 
     svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + 464+ ")")
+            .attr("transform", "translate(0," + height+ ")")
             .call(xAxis);
     
     svg.append('g')
            .attr('class','y axis')
            .attr('transform','translate('+0+',0)')
            .call(yAxis);
+           
 })
